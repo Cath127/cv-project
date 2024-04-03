@@ -51,6 +51,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </header>
     <section class="container-fluid">
         <div class="row">
@@ -198,26 +199,35 @@
 
     </footer>
     <script>
-        function initMap() {
+        function initMap(){
             var map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 3,
                 center: {
                     lat: 46.619261,
-                    lng: 33.134766
+                    lng: -33.134766
                 }
             });
         }
+
+            var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            var locations = [
+                {lat: 40.785091, lng: -73.968285},
+                {lat: 41.084045, lng: -73.874245},
+                {lat: 40.754932, lng: -73.984016}
+            ];
+            var markers = locations.map(function(location, i){
+                return new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+            });
+            var markerClusterer = MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
     </script>
- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-    ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
-
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-
-    
-    <!-- <script var APIkey = "AIzaSyDWd5a3hzQqi5g1gsByE3EJZk_5mE6nnAQ";</script>
-    
-    <!-- // <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDHHyac2SiOYPNYxXMK7rqJjnB8nCaaxE&callback=initMap"></script>
-    // <script src="assets/js/maps.js"></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWd5a3hzQqi5g1gsByE3EJZk_5mE6nnAQ&callback=initMap"></script>
 </body>
 
 </html>
+
